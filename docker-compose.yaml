@@ -1,0 +1,27 @@
+services:
+  service-a:
+    container_name: service-a
+    build:
+      context: ./service-a
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - service-b
+      - zipkin
+
+  service-b:
+    container_name: service-b
+    build:
+      context: ./service-b
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - zipkin
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"

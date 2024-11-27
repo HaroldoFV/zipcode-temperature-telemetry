@@ -1,0 +1,40 @@
+basePath: /
+definitions:
+  main.ZipcodeRequest:
+    properties:
+      cep:
+        type: string
+    type: object
+host: localhost:8081
+info:
+  contact: {}
+  description: Esta é uma API para validar e encaminhar CEPs.
+  title: Zipcode Validation API
+  version: "1.0"
+paths:
+  /validate-zipcode:
+    post:
+      consumes:
+      - application/json
+      description: Valida se o CEP contém 8 dígitos e encaminha para o Serviço B se
+        for válido.
+      parameters:
+      - description: CEP
+        in: body
+        name: zipcode
+        required: true
+        schema:
+          $ref: '#/definitions/main.ZipcodeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Zipcode is valid and forwarded to Service B
+          schema:
+            type: string
+        "422":
+          description: invalid zipcode
+          schema:
+            type: string
+      summary: Valida e encaminha um CEP
+swagger: "2.0"

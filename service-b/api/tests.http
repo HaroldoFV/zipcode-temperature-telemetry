@@ -1,0 +1,51 @@
+### Teste com CEP válido
+GET https://zipcode-temperature-system-ggv2ooifja-uc.a.run.app/temperature/01001000
+Accept: application/json
+
+### Teste com CEP válido
+GET http://localhost:8080/temperature/9898
+Accept: application/json
+
+### Teste com CEP inválido (formato incorreto - letras)
+GET http://localhost:8080/temperature/0100100D
+Accept: application/json
+
+### Teste com CEP inválido (formato incorreto - tamanho errado)
+GET http://localhost:8080/temperature/010010
+Accept: application/json
+
+### Teste com CEP inexistente
+GET http://localhost:8080/temperature/99999999
+Accept: application/json
+
+### Teste com CEP válido de outra cidade
+GET http://localhost:8080/temperature/04547004
+Accept: application/json
+
+### Teste com CEP válido sem conteúdo
+GET http://localhost:8080/temperature/
+Accept: application/json
+
+### Teste com caracteres especiais no CEP
+GET http://localhost:8080/temperature/0100-100
+Accept: application/json
+
+### Teste com CEP contendo espaços
+GET http://localhost:8080/temperature/0100 100
+Accept: application/json
+
+### Teste com CEP válido de cidade pequena
+GET http://localhost:8080/temperature/13250000
+Accept: application/json
+
+### Teste de performance - executar em sequência
+GET http://localhost:8080/temperature/01001000
+Accept: application/json
+
+###
+GET http://localhost:8080/temperature/04547004
+Accept: application/json
+
+###
+GET http://localhost:8080/temperature/13250000
+Accept: application/json

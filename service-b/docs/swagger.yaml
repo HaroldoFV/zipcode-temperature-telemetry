@@ -1,0 +1,45 @@
+basePath: /
+definitions:
+  dto.TemperatureResponse:
+    properties:
+      city:
+        type: string
+      temp_C:
+        type: number
+      temp_F:
+        type: number
+      temp_K:
+        type: number
+    type: object
+info:
+  contact: {}
+  description: API para obter temperatura com base no CEP usando Swagger.
+  title: Zipcode Temperature API
+  version: "1.0"
+paths:
+  /temperature/{cep}:
+    get:
+      parameters:
+      - description: CEP para buscar a temperatura
+        in: path
+        name: cep
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.TemperatureResponse'
+        "404":
+          description: can not find zipcode
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "422":
+          description: invalid zipcode
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+swagger: "2.0"
